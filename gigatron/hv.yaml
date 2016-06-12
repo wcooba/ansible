@@ -29,7 +29,19 @@
      yum: name=qemu-kvm state=latest
    - name: install libvirt
      yum: name=libvirt state=latest
+   - name: start libvirtd
+     service: name=libvirtd state=started
    - name: install virt-install
      yum: name=virt-install state=latest
    - name: install bridge utils
      yum: name=bridge-utils state=latest
+   - name: copying configuration of br0
+     action: copy src=config_files/ifcfg-br0 dest=/etc/sysconfig/network-scripts/ifcfg-br0
+   - name: copying configuration of enp0s8
+     action: copy src=config_files/ifcfg-enp0s8 dest=/etc/sysconfig/network-scripts/ifcfg-np0s8
+   - name: copying br0.xml
+     action: copy src=config_files/br0.xml dest=/root/br0.xml
+   - name: copying virt_prep.sh
+     action: copy src=config_files/virt_prep.sh dest=/root/virt_prep.sh mode=0700
+   - name: executing virt_prep.sh
+     shell: /root/virt_prep.sh >> /root/virt_prep.log 
