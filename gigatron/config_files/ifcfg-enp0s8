@@ -1,0 +1,9 @@
+BOOTPROTO=none
+DEVICE=enp0s8
+ONBOOT=yes
+IPV6INIT=no
+TYPE=Ethernet
+DEFROUTE=no
+IPV4_FAILURE_FATAL=no
+NAME="System enp0s8"
+BRIDGE=br0
