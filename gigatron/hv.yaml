@@ -1,0 +1,4 @@
+ - hosts: all
+   tasks:
+   - name: custom sshd config
+     action: copy src=config_files/sshd_config dest=/etc/ssh/sshd_config
