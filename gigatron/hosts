@@ -1,2 +1,3 @@
 [hv]
-gigatron-hv02 ansible_host=10.0.0.33
+gigatron-hv-test nsible_host=10.0.0.29
+#gigatron-hv02 ansible_host=10.0.0.33

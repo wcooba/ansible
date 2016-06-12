@@ -1,4 +1,4 @@
- - hosts: all
+ - hosts: [hv]
    gather_facts: no
    tasks:
    - name: custom sshd config
@@ -7,6 +7,8 @@
      service: name=sshd state=restarted
    - name: stop iptables
      service: name=firewalld state=stopped
+   - name: disable selinux
+     selinux: state=disabled
    - name: remove repo configs
      shell: rm -f /etc/yum.repos.d/*.repo
    - name: add local yum repo
@@ -15,5 +17,21 @@
        description: Local CentOS 7 repo
        baseurl: http://10.0.0.20/repo/centos/7/
        gpgcheck: no
+   - name: add local yum updates repo
+     yum_repository:
+       name: centos7_updates__local
+       description: Local CentOS 7 Updates repo
+       baseurl: http://10.0.0.20/repo/centos/7_updates/
+       gpgcheck: no
+   - name: upgrade all packages
+     yum: name=* state=latest
    - name: install net tools
      yum: name=net-tools state=latest
+   - name: install KVM
+     yum: name=qemu-kvm state=latest
+   - name: install libvirt
+     yum: name=libvirt state=latest
+   - name: install virt-install
+     yum: name=virt-install state=latest
+   - name: install bridge utils
+     yum: name=bridge-utils state=latest
