@@ -1,4 +1,4 @@
- - hosts: [hv]
+ - hosts: [hv-test]
    gather_facts: no
    tasks:
    - name: custom sshd config
@@ -38,10 +38,10 @@
    - name: copying configuration of br0
      action: copy src=config_files/ifcfg-br0 dest=/etc/sysconfig/network-scripts/ifcfg-br0
    - name: copying configuration of enp0s8
-     action: copy src=config_files/ifcfg-em2 dest=/etc/sysconfig/network-scripts/ifcfg-em2
+     action: copy src=config_files/ifcfg-enp0s8 dest=/etc/sysconfig/network-scripts/ifcfg-np0s8
    - name: copying br0.xml
      action: copy src=config_files/br0.xml dest=/root/br0.xml
-   - name: copying virt_prep_bm.sh
-     action: copy src=config_files/virt_prep_bm.sh dest=/root/virt_prep_bm.sh mode=0700
-   - name: executing virt_prep_bm.sh
-     shell: /root/virt_prep_bm.sh >> /root/virt_prep.log 
+   - name: copying virt_prep.sh
+     action: copy src=config_files/virt_prep.sh dest=/root/virt_prep.sh mode=0700
+   - name: executing virt_prep.sh
+     shell: /root/virt_prep.sh >> /root/virt_prep.log 
