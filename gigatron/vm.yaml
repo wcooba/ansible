@@ -1,0 +1,27 @@
+ - hosts: [vm]
+   gather_facts: no
+   tasks:
+   - name: custom sshd config
+     action: copy src=config_files/sshd_config dest=/etc/ssh/sshd_config
+   - name: restart sshd
+     service: name=sshd state=restarted
+   - name: stop iptables
+     service: name=firewalld state=stopped enabled=no
+   - name: disable selinux
+     selinux: state=disabled
+   - name: add local yum repo
+     yum_repository:
+       name: centos7_local
+       description: Local CentOS 7 repo
+       baseurl: http://10.0.0.20/repo/centos/7/
+       gpgcheck: no
+   - name: add local yum updates repo
+     yum_repository:
+       name: centos7_updates__local
+       description: Local CentOS 7 Updates repo
+       baseurl: http://10.0.0.20/repo/centos/7_updates/
+       gpgcheck: no
+   - name: upgrade all packages
+     yum: name=* state=latest
+   - name: install net tools
+     yum: name=net-tools state=latest
