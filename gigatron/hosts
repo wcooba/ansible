@@ -1,4 +1,16 @@
 [hv-test]
 gigatron-hv-test ansible_host=10.0.0.29
 [hv]
+gigatron-hv01 ansible_host=10.0.0.32
 gigatron-hv02 ansible_host=10.0.0.33
+[vm]
+gigatron-web01 ansible_host=10.0.0.34
+gigatron-web02 ansible_host=10.0.0.35
+gigatron-app01 ansible_host=10.0.0.36
+gigatron-app02 ansible_host=10.0.0.37
+gigatron-db01 ansible_host=10.0.0.38
+gigatron-db02 ansible_host=10.0.0.39
+gigatron-jms01 ansible_host=10.0.0.40
+gigatron-jms02 ansible_host=10.0.0.41
+gigatron-admin01 ansible_host=10.0.0.42
+
